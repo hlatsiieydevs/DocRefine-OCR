@@ -1,0 +1,60 @@
+All the documents in data/templates/injection, need to be generated and complied:
+> WPL_02_Cover_Page.docx
+> WPL_02.docx
+> WPL_04_Cover_Page.docx
+> WPL_04.docx
+
+The output documents must be saved as follows:
+> page_##_WPL_02_Cover_Page.pdf
+> page_##_WPL_02.pdf
+> page_##_WPL_04_Cover_Page.pdf
+> page_##_WPL_04.pdf
+
+The following information is shared between all the documents:
+1. Student Name (get from WPL_02_Final_Dataset.csv)
+2. Student Number (get from WPL_02_Final_Dataset.csv)
+3. WIL Coordinator's Signature (get from data/signature/wil_signature.jpeg)
+
+This is a description of the following variables:
+- r_date = rand(25/11/year, 01/12/year)
+    r_date is a random date betweem the 25th of November and the 1st of December of the respective year.
+
+- Year = get from WPL_02_Final_Dataset.csv
+
+The following information is strictly shared between WPL_02 and WPL_04:
+1. Year (get from WPL_02_Final_Dataset.csv)
+
+The following infomation is strictly shared between WPL_04 and WPL_04_Cover_Page:
+1. Final Score/Total (get from data/tables/totals/MIP360S_Results.csv specifcally the T4 column for the respective student no.)
+
+The relationships between the WPL_04 variables and data:
+XT = T4% * 28 
+    Where T4 is found in data/tables/totals/MIP360S_Results.csv (T4 column) for the respective student no.
+
+The variables X1 - X7 are random guessed variables between 2-4 when summed should equal to XT.
+
+In edge cases the total may be below 14 out of 28 (below 50%), in those cases the random values can range from 0-3.
+
+The relationships between the WPL_02 variables and data:
+- Q1T = rand()
+- Q2T = (T2% * 28)*2 - Q1T
+    Where rand() is a guessed value between 10 and 28, but Q2T > Q1T
+    Where T2 is found in data/tables/totals/MIP360S_Results.csv (T2 column) for the respective student no.
+
+The variables Q1_1 - Q1_7 & Q2_1 - Q2_7 are random guessed variables between 2-4 when summed should respectively be equals to Q1T & Q2T.
+In edge cases the total may be below 14 out of 28 (below 50%), in those cases the random values can range from 0-3.
+
+In the tables, if you see N/A, when writing to the document. Omit that information for that block (so leave it empty).
+
+If the value is below 50% for the final score on the cover pages.
+The ach_stat will be "Not Achieved" 
+If the value is above 50% for the final score on the cover pages.
+The ach_stat will be "Achieved"
+
+WPL_02_Cover_Page:
+Final Score = T2% 
+
+WPL_04_Cover_Page: 
+Final Score = T4%
+
+Before proceeding with making changes, do ask clarifying questions and create a to-do list and wait for my approval or to complete answering all your questions.
